@@ -186,78 +186,87 @@ function App() {
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Email
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Nome
-                    </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                      Ações
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {usuariosFiltrados.map((u, i) => (
-                    <tr key={i} className="hover:bg-gray-50 transition">
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-2">
-                          <Mail className="text-gray-400" size={16} />
-                          <span className="text-gray-700">{u.email?.S || u.email || "N/A"}</span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className="text-gray-700 font-medium">{u.nome?.S || u.nome || "N/A"}</span>
-                      </td>
-                      <td className="px-6 py-4">
-                        {(u.status?.S || u.status) === "ativo" ? (
-                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
-                            <CheckCircle size={14} />
-                            Ativo
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
-                            <XCircle size={14} />
-                            Inativo
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex gap-2 justify-center">
-                          {(u.status?.S || u.status) === "inativo" ? (
-                            <button
-                              onClick={() => atualizar(u.email?.S || u.email, "ativo")}
-                              className="p-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition"
-                              title="Ativar"
-                            >
-                              <CheckCircle size={18} />
-                            </button>
-                          ) : (
-                            <button
-                              onClick={() => atualizar(u.email?.S || u.email, "inativo")}
-                              className="p-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
-                              title="Inativar"
-                            >
-                              <XCircle size={18} />
-                            </button>
-                          )}
-                          <button
-                            onClick={() => remover(u.email?.S || u.email)}
-                            className="p-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition"
-                            title="Excluir"
-                          >
-                            <Trash2 size={18} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+               <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+  <tr>
+    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+      Email
+    </th>
+    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+      Nome
+    </th>
+    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+      HWID
+    </th>
+    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+      Status
+    </th>
+    <th className="px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider">
+      Ações
+    </th>
+  </tr>
+</thead>
+<tbody className="divide-y divide-gray-100">
+  {usuariosFiltrados.map((u, i) => (
+    <tr key={i} className="hover:bg-gray-50 transition">
+      <td className="px-6 py-4">
+        <div className="flex items-center gap-2">
+          <Mail className="text-gray-400" size={16} />
+          <span className="text-gray-700">{u.email?.S || u.email || "N/A"}</span>
+        </div>
+      </td>
+      <td className="px-6 py-4">
+        <span className="text-gray-700 font-medium">{u.nome?.S || u.nome || "N/A"}</span>
+      </td>
+      <td className="px-6 py-4">
+        <span className="text-gray-700 font-mono text-sm">
+          {u.hwid?.S || u.hwid || <span className="text-gray-400 italic">–</span>}
+        </span>
+      </td>
+      <td className="px-6 py-4">
+        {(u.status?.S || u.status) === "ativo" ? (
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
+            <CheckCircle size={14} />
+            Ativo
+          </span>
+        ) : (
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+            <XCircle size={14} />
+            Inativo
+          </span>
+        )}
+      </td>
+      <td className="px-6 py-4">
+        <div className="flex gap-2 justify-center">
+          {(u.status?.S || u.status) === "inativo" ? (
+            <button
+              onClick={() => atualizar(u.email?.S || u.email, "ativo")}
+              className="p-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition"
+              title="Ativar"
+            >
+              <CheckCircle size={18} />
+            </button>
+          ) : (
+            <button
+              onClick={() => atualizar(u.email?.S || u.email, "inativo")}
+              className="p-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+              title="Inativar"
+            >
+              <XCircle size={18} />
+            </button>
+          )}
+          <button
+            onClick={() => remover(u.email?.S || u.email)}
+            className="p-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition"
+            title="Excluir"
+          >
+            <Trash2 size={18} />
+          </button>
+        </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
               </table>
             </div>
           )}
