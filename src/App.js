@@ -219,7 +219,7 @@ function App() {
       </td>
       <td className="px-6 py-4">
         <span className="text-gray-700 font-mono text-sm">
-          {u.hwid?.S || u.hwid || <span className="text-gray-400 italic">–</span>}
+          {u.hwid?.S || u.hwid ? (   <span className="text-gray-700 font-mono text-sm">{u.hwid?.S || u.hwid}</span> ) : (   <span className="text-gray-400 italic">–</span> )}
         </span>
       </td>
       <td className="px-6 py-4">
